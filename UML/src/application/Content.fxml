@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="200.0" prefHeight="600.0" prefWidth="500.0">
+         <children>
+            <Separator layoutX="500.0" orientation="VERTICAL" prefHeight="600.0" />
+         </children></Pane>
+      <Button layoutY="561.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" text="Neu" />
+      <Button layoutX="100.0" layoutY="561.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" text="Löschen" />
+      <Accordion layoutX="700.0" prefHeight="600.0" prefWidth="300.0">
+        <panes>
+          <TitledPane text="Attribute">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView prefHeight="524.0" prefWidth="298.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="Operationen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView prefHeight="524.0" prefWidth="298.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="Beziehungen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView prefHeight="524.0" prefWidth="298.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Accordion>
+      <TreeView prefHeight="550.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
