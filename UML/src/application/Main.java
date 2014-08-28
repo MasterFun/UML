@@ -21,7 +21,7 @@ public class Main extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showContent();
     }
 
     /**
@@ -46,7 +46,7 @@ public class Main extends Application {
     /**
      * Shows the person overview inside the root layout.
      */
-    public void showPersonOverview() {
+    public void showContent() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
