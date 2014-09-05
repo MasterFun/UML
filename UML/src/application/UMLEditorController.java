@@ -374,8 +374,8 @@ public class UMLEditorController {
 	
 	
 	
-	// Background wird geändert
-	public void ckEasterEggColor() throws InterruptedException {
+	
+	public void ckEasterEggColor() {
 
 		final String alphabet = "0123456789ABCDEF";
 		final int N = alphabet.length();

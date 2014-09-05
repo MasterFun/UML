@@ -13,7 +13,7 @@
 		<TreeView fx:id="klassenTree" onMouseClicked="#klasseSetCheckEmpty" prefHeight="550.0" prefWidth="200.0" />
 		<Button layoutY="561.0" mnemonicParsing="false" onMouseClicked="#klasseSet" prefHeight="20.0" prefWidth="90.0" text="Neu" />
 		<Button layoutX="100.0" layoutY="561.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" text="Löschen" />
-		<Pane fx:id="paneKlasse" layoutX="200.0" prefHeight="600.0" prefWidth="500.0">
+		<Pane fx:id="paneKlasse" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-image: url('srch/background.jpg');">
 			<children>
 				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pane Klasse" wrappingWidth="243.431640625">
 					<font>
@@ -26,10 +26,10 @@
 				<TextField fx:id="paneKlasseStereotyp" layoutX="160.0" layoutY="56.0" prefWidth="200.0" />
 				<ChoiceBox fx:id="paneKlasseVererbung" layoutX="160.0" layoutY="86.0" prefWidth="200.0" />
 				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Vererbung von" textAlignment="JUSTIFY" />
-            <Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
-            <ChoiceBox fx:id="paneKlasseVererbung1" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
-				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false" prefWidth="90.0" text="Löschen" />
-				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" prefWidth="90.0" text="Speichern" />
+				<Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
+				<ChoiceBox fx:id="paneKlasseVererbung1" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
+				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseDelete" prefWidth="90.0" text="Löschen" />
+				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseSave" prefWidth="90.0" text="Speichern" />
 			</children>
 		</Pane>
 		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
