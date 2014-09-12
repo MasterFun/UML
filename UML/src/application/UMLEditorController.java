@@ -1,14 +1,19 @@
 package application;
 
 
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
@@ -18,7 +23,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class UMLEditorController {
+public class UMLEditorController implements Initializable {
 
 	// Alle ContentPanes
 	@FXML
@@ -28,7 +33,8 @@ public class UMLEditorController {
 	ListView<String> listAttribut, listOperation, listBeziehung;
 
 	@FXML
-	TreeView<String> klassenTree;
+	TreeView<String> klassenTree = new TreeView<String>();
+	
 
 	@FXML
 	Text statusFeldText;
@@ -45,28 +51,48 @@ public class UMLEditorController {
 			paneAttributStereotyp;
 	@FXML
 	ChoiceBox<String> paneAttributSichtbarkeit, paneAttributTyp;
+	
 	@FXML
 	CheckBox paneAttributSetter, paneAttributGetter, paneAttributAbgeleitet,
 			paneAttributKonstante, paneAttributKlassenattribut;
+	
+	// Hilfslisten fï¿½r Felder
+	// Liste fï¿½r Dropdown Sichtbarkeit
+//	List<String> sichtbarkeit = Arrays.asList("public", "private", "protected");
+	List<Sichtbarkeit> sichtbarkeit = new ArrayList<Sichtbarkeit>(Arrays.asList(Sichtbarkeit.values()));
 
-	// Hilfslisten für Felder
-	// Liste für Dropdown Sichtbarkeit
-	List<String> sichtbarkeit = Arrays.asList("public", "private", "protected");
-
-	// Liste für Dropdown Typ - Standard Datentypen
-	List<String> datentypenStd = Arrays.asList("boolean", "byte", "char",
-			"double", "float", "int", "long", "short", "String");
-
+	// Liste fï¿½r Dropdown Typ - Standard Datentypen
+//	List<String> datentypenStd = Arrays.asList("boolean", "byte", "char",
+//			"double", "float", "int", "long", "short", "String");
+	List<Datentyp> datentypenStd = new ArrayList<Datentyp>(Arrays.asList(Datentyp.values()));
+	
+	public String hostname;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		try {
+			hostname = InetAddress.getLocalHost().getHostName();
+			//TODO
+			//System.out.println(hostname.split(".")[0].toString());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TreeItem<String> treeRoot = new TreeItem<String>(hostname);
+		klassenTree.setRoot(treeRoot);
+	}
+	
 	// Funktionen
-	// Statusfeld gespeichert - Grün
+	// Statusfeld gespeichert - Grï¿½n
 	public void statusFeldSave() {
 		statusFeldText.setText("gespeichert...");
 		statusFeld.setStyle("-fx-background-color: #65f565");
 	}
 
-	// Statusfeld gelöscht - Rot
+	// Statusfeld gelï¿½scht - Rot
 	public void statusFeldDelete() {
-		statusFeldText.setText("gelöscht...");
+		statusFeldText.setText("gelï¿½scht...");
 		statusFeld.setStyle("-fx-background-color: #f67d7d");
 	}
 
@@ -74,14 +100,14 @@ public class UMLEditorController {
 		paneOperation.setVisible(false);
 		paneAttribut.setVisible(false);
 		paneKlasse.setVisible(false);
-		// Statusfeldfarbe zurücksetzen
+		// Statusfeldfarbe zurï¿½cksetzen
 		statusFeld.setStyle("-fx-background-color: #c0c0c0");
 	}
 
 	// ----- Attribut -----
-	// TODO bauen, wenn ein Objekt ausgewählt ist oder Neu angelegt wird
+	// TODO bauen, wenn ein Objekt ausgewï¿½hlt ist oder Neu angelegt wird
 
-	// Liste der Attribute füllen
+	// Liste der Attribute fï¿½llen
 	public void listAttributAnzeigen() {
 
 		statusFeldText.setText("Liste Attribute anzeigen...");
@@ -91,7 +117,7 @@ public class UMLEditorController {
 				.observableList(new ArrayList<String>());
 
 		// ersten Eintrag erzeugen
-		observableListAttribut.add("hinzufügen...");
+		observableListAttribut.add("hinzufï¿½gen...");
 		observableListAttribut.add("Attribut1");
 
 		// Liste einlesen aus Klasse
@@ -116,26 +142,26 @@ public class UMLEditorController {
 		// paneAttributAbgeleitet, paneAttributKonstante,
 		// paneAttributKlassenattribut;
 
-		// Feld paneAttributSichtbarkeit befüllen
-		// TODO beim bearbeiten von Datensätzen das richtige Feld auf "selected"
+		// Feld paneAttributSichtbarkeit befï¿½llen
+		// TODO beim bearbeiten von Datensï¿½tzen das richtige Feld auf "selected"
 		// setzen
 		paneAttributSichtbarkeit.getItems().clear();
-		for (String sicht : sichtbarkeit) {
-			paneAttributSichtbarkeit.getItems().add(sicht);
+		for (Sichtbarkeit sicht : sichtbarkeit) {
+			paneAttributSichtbarkeit.getItems().add(sicht.toString());
 		}
 
-		// Feld paneAttributTyp befüllen
-		// TODO beim bearbeiten von Datensätzen das richtige Feld auf "selected"
+		// Feld paneAttributTyp befï¿½llen
+		// TODO beim bearbeiten von Datensï¿½tzen das richtige Feld auf "selected"
 		// setzen
 		paneAttributTyp.getItems().clear();
-		for (String typ : datentypenStd) {
-			paneAttributTyp.getItems().add(typ);
+		for (Datentyp typ : datentypenStd) {
+			paneAttributTyp.getItems().add(typ.toString());
 		}
 
 		// Neues Attribut anlegen
 		if (listAttribut.getSelectionModel().getSelectedItem()
-				.equals("hinzufügen...")) {
-			statusFeldText.setText("neues Attribut hinzufügen...");
+				.equals("hinzufï¿½gen...")) {
+			statusFeldText.setText("neues Attribut hinzufï¿½gen...");
 		}
 
 		// Attribut bearbeiten
@@ -161,9 +187,9 @@ public class UMLEditorController {
 	// -------------------------
 
 	// ----- Operation -----
-	// TODO bauen, wenn ein Objekt ausgewählt ist oder Neu angelegt wird
+	// TODO bauen, wenn ein Objekt ausgewï¿½hlt ist oder Neu angelegt wird
 
-	// Liste der Operation füllen
+	// Liste der Operation fï¿½llen
 	public void listOperationAnzeigen() {
 
 		statusFeldText.setText("Liste Operationen anzeigen...");
@@ -173,7 +199,7 @@ public class UMLEditorController {
 				.observableList(new ArrayList<String>());
 
 		// ersten Eintrag erzeugen
-		observableListOperation.add("hinzufügen...");
+		observableListOperation.add("hinzufï¿½gen...");
 		observableListOperation.add("Operation1");
 
 		// Liste einlesen aus Klasse
@@ -193,8 +219,8 @@ public class UMLEditorController {
 
 		// Neue Operation anlegen
 		if (listOperation.getSelectionModel().getSelectedItem()
-				.equals("hinzufügen...")) {
-			statusFeldText.setText("Neue Operationen hinzufügen...");
+				.equals("hinzufï¿½gen...")) {
+			statusFeldText.setText("Neue Operationen hinzufï¿½gen...");
 		}
 
 		// Operation bearbeiten
@@ -240,7 +266,7 @@ public class UMLEditorController {
 
 	}
 
-	// Abfrage für Liste Klasse, damit keine Nullpointer Exeption kommt
+	// Abfrage fï¿½r Liste Klasse, damit keine Nullpointer Exeption kommt
 	public void klasseSetCheckEmpty() {
 
 		if (klassenTree.getSelectionModel().isEmpty()) {
@@ -270,7 +296,7 @@ public class UMLEditorController {
 		// Neue Klasse anlegen
 		// TODO
 
-		// Klasse bearbeiten - Pane mit Werten befüllen
+		// Klasse bearbeiten - Pane mit Werten befï¿½llen
 		// TODO
 		// paneKlasseName.setText(klassenTree.getSelectionModel().getSelectedItem().getValue().toString());
 		// paneKlasseStereotyp
@@ -373,10 +399,10 @@ public class UMLEditorController {
 	
 	
 	
-	// Background wird geändert
+	// Background wird geï¿½ndert
 	public void ckEasterEggColor() throws InterruptedException {
 
-		// Farbe ändern
+		// Farbe ï¿½ndern
 		final String alphabet = "0123456789ABCDEF";
 		final int N = alphabet.length();
 
@@ -395,7 +421,7 @@ public class UMLEditorController {
 
 
 
-	// Test Hintergrund ändern
+	// Test Hintergrund ï¿½ndern
 //TODO geht noch nicht
 //  Random zahl = new Random();
 //  String setBgNew = "-fx-background-image: url(\"background" + (1 + zahl.nextInt(9)) + ".png\");";

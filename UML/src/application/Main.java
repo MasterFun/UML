@@ -22,9 +22,10 @@ public class Main extends Application {
         initRootLayout();
 
         showContent();
+        
     }
 
-    /**
+	/**
      * Initializes the root layout.
      */
     public void initRootLayout() {
@@ -71,4 +72,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
