@@ -15,12 +15,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -85,9 +88,34 @@ public class UMLEditorController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TreeItem<String> treeRoot = new TreeItem<String>(hostname);
+
+		
+	    
+		TreeItem<String> treeRoot = new TreeItem<String>(hostname,new ImageView(new Image(getClass().getResourceAsStream("klassenTreeRootNode.png"))));
+		
+		
+		
 		klassenTree.setRoot(treeRoot);
-	}
+		
+
+//	    
+//		private final Image package = 
+//	            new Image(getClass().getResourceAsStream("package.png"));
+//	        List<Employee> employees = Arrays.<Employee>asList(
+//	                new Employee("Ethan Williams", "Sales Department"),
+//	                new Employee("Emma Jones", "Sales Department"),
+//	                new Employee("Michael Brown", "Sales Department"),
+//	                new Employee("Anna Black", "Sales Department"),
+//	                new Employee("Rodger York", "Sales Department"),
+//	                new Employee("Susan Collins", "Sales Department"),
+//	                new Employee("Mike Graham", "IT Support"),
+//	                new Employee("Judy Mayer", "IT Support"),
+//	                new Employee("Gregory Smith", "IT Support"),
+//	                new Employee("Jacob Smith", "Accounts Department"),
+//	                new Employee("Isabella Johnson", "Accounts Department"));
+//	        TreeItem<String> rootNode = 
+//	            new TreeItem<String>("MyCompany Human Resources", rootIcon);
+	        }
 	
 	// Funktionen
 	// Statusfeld gespeichert - Gr�n
