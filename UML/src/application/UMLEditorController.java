@@ -4,6 +4,7 @@ package application;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,19 +16,27 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 public class UMLEditorController implements Initializable {
+	
+	private UMLEditor umlObject = UMLEditor.getInstance();
+	
 
 	// Alle ContentPanes
 	@FXML
-	Pane painMain, paneOperation, paneAttribut, paneKlasse, statusFeld;
+	Pane painMain, paneOperation, paneAttribut, paneKlasse, statusFeld, testpane;
 
 	@FXML
 	ListView<String> listAttribut, listOperation, listBeziehung;
@@ -43,14 +52,14 @@ public class UMLEditorController implements Initializable {
 	@FXML
 	TextField paneKlasseName, paneKlasseStereotyp;
 	@FXML
-	ChoiceBox paneKlasseVererbung;
+	ComboBox<String> paneKlasseVererbung;
 
 	// Pane Attribut - Felder
 	@FXML
 	TextField paneAttributName, paneAttributTypString, paneAttributInitialwert,
 			paneAttributStereotyp;
 	@FXML
-	ChoiceBox<String> paneAttributSichtbarkeit, paneAttributTyp;
+	ComboBox<String> paneAttributSichtbarkeit, paneAttributTyp;
 	
 	@FXML
 	CheckBox paneAttributSetter, paneAttributGetter, paneAttributAbgeleitet,
@@ -322,6 +331,43 @@ public class UMLEditorController implements Initializable {
 
 	
 	
+	// ----- Men� -> DAtei -----
+	// Men� -> Datei �ffnen
+	public void fileOpen(){
+		Window stage = null;
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Datei speichern unter...");
+		File file = fileChooser.showOpenDialog(stage);
+		// Pfad mit Dateiname
+		System.out.println(file.getAbsolutePath());
+		// Dateiname
+		System.out.println(file.getName());
+		//TODO Dateiname bekannt, dann Methode open aufrufen!! 
+
+	}	
+	
+	
+	// Men� -> Datei speichern unter...
+	public void fileSaveAs(){
+		Window stage = null;
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Datei speichern unter...");
+		File file = fileChooser.showSaveDialog(stage);
+		// Pfad mit Dateiname
+		System.out.println(file.getAbsolutePath());
+		// Dateiname
+		System.out.println(file.getName());
+		//TODO Dateiname bekannt, dann Methode save aufrufen!! 
+	}
+	
+	// Men� -> Datei speichern 
+	public void fileSave(){
+		//TODO Methode zum speichern aufrufen mit bekanntem Dateiname
+	}
+	// -------------------------
+
+	
+	
 	
 	
 	
@@ -400,10 +446,10 @@ public class UMLEditorController implements Initializable {
 	
 	
 	// Background wird ge�ndert
-	public void ckEasterEggColor() throws InterruptedException {
+	public void ckEasterEggColor() {
 
 		// Farbe �ndern
-		final String alphabet = "0123456789ABCDEF";
+		final String alphabet = "0123456789ABCDE";
 		final int N = alphabet.length();
 
 		Random r = new Random();
@@ -415,7 +461,10 @@ public class UMLEditorController implements Initializable {
 
 		painMain.setStyle("-fx-background-color: #" + farbeneu);
 		
+		//testpane.setStyle("-fx-background-image: url(\"background2.png\");");
 
+
+		System.out.println("#" + farbeneu);
         
 	}
 
@@ -426,6 +475,7 @@ public class UMLEditorController implements Initializable {
 //  Random zahl = new Random();
 //  String setBgNew = "-fx-background-image: url(\"background" + (1 + zahl.nextInt(9)) + ".png\");";
 //  System.out.println(setBgNew);
+	
 
 
 
