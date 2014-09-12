@@ -3,3 +3,8 @@
     -fx-background-repeat: stretch;   
     -fx-background-position: center center;
 }
+
+.bgflag{
+    -fx-background-image: url("background9.png");
+    -fx-background-size: cover;
+}
