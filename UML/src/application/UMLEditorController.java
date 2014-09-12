@@ -373,10 +373,10 @@ public class UMLEditorController {
 	
 	
 	
-	
 	// Background wird geändert
 	public void ckEasterEggColor() throws InterruptedException {
 
+		// Farbe ändern
 		final String alphabet = "0123456789ABCDEF";
 		final int N = alphabet.length();
 
@@ -388,6 +388,21 @@ public class UMLEditorController {
 		}
 
 		painMain.setStyle("-fx-background-color: #" + farbeneu);
+		
+
+        
 	}
+
+
+
+	// Test Hintergrund ändern
+//TODO geht noch nicht
+//  Random zahl = new Random();
+//  String setBgNew = "-fx-background-image: url(\"background" + (1 + zahl.nextInt(9)) + ".png\");";
+//  System.out.println(setBgNew);
+
+
+
+
 
 }

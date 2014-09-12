@@ -8,113 +8,169 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="painMain" prefHeight="625.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UMLEditorController">
+<AnchorPane fx:id="painMain" prefHeight="625.0" prefWidth="1000.0"
+	styleClass="panebg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UMLEditorController">
 	<children>
-		<TreeView fx:id="klassenTree" onMouseClicked="#klasseSetCheckEmpty" prefHeight="550.0" prefWidth="200.0" />
-		<Button layoutY="561.0" mnemonicParsing="false" onMouseClicked="#klasseSet" prefHeight="20.0" prefWidth="90.0" text="Neu" />
-		<Button layoutX="100.0" layoutY="561.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" text="Löschen" />
-		<Pane fx:id="paneKlasse" layoutX="200.0" prefHeight="600.0" prefWidth="500.0">
+		<TreeView fx:id="klassenTree" onMouseClicked="#klasseSetCheckEmpty"
+			prefHeight="550.0" prefWidth="200.0" />
+		<Button layoutY="561.0" mnemonicParsing="false" onMouseClicked="#klasseSet"
+			prefHeight="20.0" prefWidth="90.0" text="Neu" />
+		<Button layoutX="100.0" layoutY="561.0" mnemonicParsing="false"
+			prefHeight="20.0" prefWidth="90.0" text="Löschen" />
+		<Pane fx:id="paneKlasse" layoutX="200.0" prefHeight="600.0"
+			prefWidth="500.0" visible="false">
 			<children>
-				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pane Klasse" wrappingWidth="243.431640625">
+				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE"
+					strokeWidth="0.0" text="Pane Klasse" wrappingWidth="243.431640625">
 					<font>
 						<Font name="System Bold" size="30.0" />
 					</font>
 				</Text>
-				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name" textAlignment="RIGHT" />
-				<TextField fx:id="paneKlasseName" layoutX="160.0" layoutY="26.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Sterotyp" textAlignment="JUSTIFY" />
-				<TextField fx:id="paneKlasseStereotyp" layoutX="160.0" layoutY="56.0" prefWidth="200.0" />
-				<ChoiceBox fx:id="paneKlasseVererbung" layoutX="160.0" layoutY="86.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Vererbung von" textAlignment="JUSTIFY" />
-            <Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
-            <ChoiceBox fx:id="paneKlasseVererbung1" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
-				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false" prefWidth="90.0" text="Löschen" />
-				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" prefWidth="90.0" text="Speichern" />
+				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name"
+					textAlignment="RIGHT" />
+				<TextField fx:id="paneKlasseName" layoutX="160.0" layoutY="26.0"
+					prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Sterotyp"
+					textAlignment="JUSTIFY" />
+				<TextField fx:id="paneKlasseStereotyp" layoutX="160.0"
+					layoutY="56.0" prefWidth="200.0" />
+				<ChoiceBox fx:id="paneKlasseVererbung" layoutX="160.0"
+					layoutY="86.0" prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Vererbung von"
+					textAlignment="JUSTIFY" />
+				<Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ"
+					textAlignment="JUSTIFY" />
+				<ChoiceBox fx:id="paneKlasseVererbung1" layoutX="160.0"
+					layoutY="116.0" prefWidth="200.0" />
+				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false"
+					onMouseClicked="#klasseDelete" prefWidth="90.0" text="Löschen" />
+				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false"
+					onMouseClicked="#klasseSave" prefWidth="90.0" text="Speichern" />
 			</children>
 		</Pane>
-		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
+		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0"
+			prefWidth="500.0" visible="false">
 			<children>
-				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pane Attribut" wrappingWidth="243.431640625">
+				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE"
+					strokeWidth="0.0" text="Pane Attribut" wrappingWidth="243.431640625">
 					<font>
 						<Font name="System Bold" size="30.0" />
 					</font>
 				</Text>
-				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name" textAlignment="RIGHT" />
-				<TextField fx:id="paneAttributName" layoutX="160.0" layoutY="26.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Sichtbarkeit" textAlignment="JUSTIFY" />
-				<ChoiceBox fx:id="paneAttributSichtbarkeit" layoutX="160.0" layoutY="56.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
-				<ChoiceBox fx:id="paneAttributTyp" layoutX="160.0" layoutY="86.0" prefWidth="200.0" />
-				<TextField fx:id="paneAttributTypString" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="150.0" prefWidth="100.0" text="Initialwert" textAlignment="JUSTIFY" />
-				<TextField fx:id="paneAttributInitialwert" layoutX="160.0" layoutY="146.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="180.0" prefWidth="100.0" text="Stereotyp" textAlignment="JUSTIFY" />
-				<TextField fx:id="paneAttributStereotyp" layoutX="160.0" layoutY="176.0" prefWidth="200.0" />
-				<CheckBox fx:id="paneAttributSetter" layoutX="160.0" layoutY="206.0" mnemonicParsing="false" text="Setter generieren" />
-				<CheckBox fx:id="paneAttributGetter" layoutX="160.0" layoutY="226.0" mnemonicParsing="false" text="Getter generieren" />
-				<CheckBox fx:id="paneAttributAbgeleitet" layoutX="160.0" layoutY="256.0" mnemonicParsing="false" text="Abgeleitet?" />
-				<CheckBox fx:id="paneAttributKonstante" layoutX="160.0" layoutY="276.0" mnemonicParsing="false" text="Konstante?" />
-				<CheckBox fx:id="paneAttributKlassenattribut" layoutX="160.0" layoutY="296.0" mnemonicParsing="false" text="Klassenattribut?" />
-				<Button layoutX="160.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#attributSave" prefWidth="90.0" text="Speichern" />
-				<Button layoutX="270.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#attributDelete" prefWidth="90.0" text="Löschen" />
+				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name"
+					textAlignment="RIGHT" />
+				<TextField fx:id="paneAttributName" layoutX="160.0"
+					layoutY="26.0" prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Sichtbarkeit"
+					textAlignment="JUSTIFY" />
+				<ChoiceBox fx:id="paneAttributSichtbarkeit" layoutX="160.0"
+					layoutY="56.0" prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Typ"
+					textAlignment="JUSTIFY" />
+				<ChoiceBox fx:id="paneAttributTyp" layoutX="160.0"
+					layoutY="86.0" prefWidth="200.0" />
+				<TextField fx:id="paneAttributTypString" layoutX="160.0"
+					layoutY="116.0" prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="150.0" prefWidth="100.0" text="Initialwert"
+					textAlignment="JUSTIFY" />
+				<TextField fx:id="paneAttributInitialwert" layoutX="160.0"
+					layoutY="146.0" prefWidth="200.0" />
+				<Label layoutX="50.0" layoutY="180.0" prefWidth="100.0" text="Stereotyp"
+					textAlignment="JUSTIFY" />
+				<TextField fx:id="paneAttributStereotyp" layoutX="160.0"
+					layoutY="176.0" prefWidth="200.0" />
+				<CheckBox fx:id="paneAttributSetter" layoutX="160.0"
+					layoutY="206.0" mnemonicParsing="false" text="Setter generieren" />
+				<CheckBox fx:id="paneAttributGetter" layoutX="160.0"
+					layoutY="226.0" mnemonicParsing="false" text="Getter generieren" />
+				<CheckBox fx:id="paneAttributAbgeleitet" layoutX="160.0"
+					layoutY="256.0" mnemonicParsing="false" text="Abgeleitet?" />
+				<CheckBox fx:id="paneAttributKonstante" layoutX="160.0"
+					layoutY="276.0" mnemonicParsing="false" text="Konstante?" />
+				<CheckBox fx:id="paneAttributKlassenattribut" layoutX="160.0"
+					layoutY="296.0" mnemonicParsing="false" text="Klassenattribut?" />
+				<Button layoutX="160.0" layoutY="356.0" mnemonicParsing="false"
+					onMouseClicked="#attributSave" prefWidth="90.0" text="Speichern" />
+				<Button layoutX="270.0" layoutY="356.0" mnemonicParsing="false"
+					onMouseClicked="#attributDelete" prefWidth="90.0" text="Löschen" />
 			</children>
 		</Pane>
-		<Pane fx:id="paneOperation" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
+		<Pane fx:id="paneOperation" layoutX="200.0" prefHeight="600.0"
+			prefWidth="500.0" visible="false">
 			<children>
-				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pane Operation" wrappingWidth="243.431640625">
+				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE"
+					strokeWidth="0.0" text="Pane Operation" wrappingWidth="243.431640625">
 					<font>
 						<Font name="System Bold" size="30.0" />
 					</font>
 				</Text>
-				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name" textAlignment="JUSTIFY" />
+				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name"
+					textAlignment="JUSTIFY" />
 				<TextField layoutX="160.0" layoutY="26.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Rückgabetyp" textAlignment="JUSTIFY" />
+				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Rückgabetyp"
+					textAlignment="JUSTIFY" />
 				<TextField layoutX="160.0" layoutY="56.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Sichtbarkeit" textAlignment="JUSTIFY" />
+				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Sichtbarkeit"
+					textAlignment="JUSTIFY" />
 				<ChoiceBox layoutX="160.0" layoutY="86.0" prefWidth="200.0" />
 				<Separator layoutX="50.0" layoutY="130.0" prefWidth="400.0" />
-				<Label layoutX="50.0" layoutY="160.0" prefHeight="17.0" prefWidth="148.0" text="Übergabeparameter" textAlignment="JUSTIFY">
+				<Label layoutX="50.0" layoutY="160.0" prefHeight="17.0"
+					prefWidth="148.0" text="Übergabeparameter" textAlignment="JUSTIFY">
 					<font>
 						<Font name="System Bold" size="12.0" />
 					</font>
 				</Label>
-				<Label layoutX="50.0" layoutY="190.0" prefWidth="100.0" text="Name" textAlignment="RIGHT" />
+				<Label layoutX="50.0" layoutY="190.0" prefWidth="100.0" text="Name"
+					textAlignment="RIGHT" />
 				<TextField layoutX="160.0" layoutY="186.0" prefWidth="200.0" />
-				<Label layoutX="50.0" layoutY="220.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
+				<Label layoutX="50.0" layoutY="220.0" prefWidth="100.0" text="Typ"
+					textAlignment="JUSTIFY" />
 				<TextField layoutX="160.0" layoutY="216.0" prefWidth="200.0" />
-				<Button layoutX="160.0" layoutY="246.0" mnemonicParsing="false" prefWidth="90.0" text="Speichern" />
-				<Button layoutX="270.0" layoutY="246.0" mnemonicParsing="false" prefWidth="90.0" text="Löschen" />
-				<ListView layoutX="160.0" layoutY="286.0" prefHeight="111.0" prefWidth="200.0" />
+				<Button layoutX="160.0" layoutY="246.0" mnemonicParsing="false"
+					prefWidth="90.0" text="Speichern" />
+				<Button layoutX="270.0" layoutY="246.0" mnemonicParsing="false"
+					prefWidth="90.0" text="Löschen" />
+				<ListView layoutX="160.0" layoutY="286.0" prefHeight="111.0"
+					prefWidth="200.0" />
 				<Separator layoutX="50.0" layoutY="420.0" prefWidth="400.0" />
-				<Button layoutX="160.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#operationSave" prefWidth="90.0" text="Speichern" />
-				<Button layoutX="270.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#operationDelete" prefWidth="90.0" text="Löschen" />
+				<Button layoutX="160.0" layoutY="440.0" mnemonicParsing="false"
+					onMouseClicked="#operationSave" prefWidth="90.0" text="Speichern" />
+				<Button layoutX="270.0" layoutY="440.0" mnemonicParsing="false"
+					onMouseClicked="#operationDelete" prefWidth="90.0" text="Löschen" />
 			</children>
 		</Pane>
 		<Accordion layoutX="700.0" prefHeight="600.0" prefWidth="300.0">
 			<panes>
 				<TitledPane onMouseClicked="#listAttributAnzeigen" text="Attribute">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
 							<children>
-								<ListView id="ListAttribut" fx:id="listAttribut" onMouseClicked="#attributSet" prefHeight="524.0" prefWidth="298.0" />
+								<ListView id="ListAttribut" fx:id="listAttribut"
+									onMouseClicked="#attributSet" prefHeight="524.0" prefWidth="298.0" />
 							</children>
 						</AnchorPane>
 					</content>
 				</TitledPane>
 				<TitledPane onMouseClicked="#listOperationAnzeigen" text="Operationen">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
 							<children>
-								<ListView id="ListOperation" fx:id="listOperation" onMouseClicked="#operationSet" prefHeight="524.0" prefWidth="298.0" />
+								<ListView id="ListOperation" fx:id="listOperation"
+									onMouseClicked="#operationSet" prefHeight="524.0" prefWidth="298.0" />
 							</children>
 						</AnchorPane>
 					</content>
 				</TitledPane>
 				<TitledPane text="Beziehungen">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
 							<children>
-								<ListView id="ListBeziehung" fx:id="listBeziehung" prefHeight="524.0" prefWidth="298.0" />
+								<ListView id="ListBeziehung" fx:id="listBeziehung"
+									prefHeight="524.0" prefWidth="298.0" />
 							</children>
 						</AnchorPane>
 					</content>
@@ -124,16 +180,22 @@
 				<DropShadow />
 			</effect>
 		</Accordion>
-		<AnchorPane fx:id="statusFeld" layoutY="600.0" onMouseClicked="#ckEasterEggColor" prefHeight="25.0" prefWidth="1000.0" style="-fx-background-color: #c0c0c0;">
+		<AnchorPane fx:id="statusFeld" layoutY="600.0"
+			onMouseClicked="#ckEasterEggColor" prefHeight="25.0" prefWidth="1000.0"
+			style="-fx-background-color: #c0c0c0;">
 			<children>
-				<Text fx:id="statusFeldText" layoutX="10.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="980.0">
+				<Text fx:id="statusFeldText" layoutX="10.0" layoutY="16.0"
+					strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER"
+					wrappingWidth="980.0">
 					<font>
 						<Font name="System Bold" size="9.0" />
 					</font>
 				</Text>
-				<Button mnemonicParsing="false" onMouseClicked="#listKlassenTree" prefHeight="17.0" prefWidth="70.0" text="ck-Spez." />
+				<Button mnemonicParsing="false" onMouseClicked="#listKlassenTree"
+					prefHeight="17.0" prefWidth="70.0" text="ck-Spez." />
 			</children>
 		</AnchorPane>
-		<Separator layoutX="700.0" orientation="VERTICAL" prefHeight="600.0" />
+		<Separator layoutX="700.0" orientation="VERTICAL"
+			prefHeight="600.0" />
 	</children>
 </AnchorPane>
