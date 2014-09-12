@@ -32,7 +32,7 @@
 				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseSave" prefWidth="90.0" text="Speichern" />
 			</children>
 		</Pane>
-		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0" prefWidth="500.0">
+		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
 			<children>
 				<Text layoutX="14.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pane Attribut" wrappingWidth="243.431640625">
 					<font>

@@ -21,9 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -31,7 +28,7 @@ import javafx.stage.Window;
 
 public class UMLEditorController implements Initializable {
 	
-	private UMLEditor umlObject = UMLEditor.getInstance();
+	private UMLEditor umlEditor = UMLEditor.getInstance();
 	
 
 	// Alle ContentPanes
