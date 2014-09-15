@@ -132,7 +132,7 @@
 					</font>
 				</Text>
 				<Button mnemonicParsing="false" onMouseClicked="#listKlassenTree" prefHeight="17.0" prefWidth="70.0" text="ck-Spez." />
-            <Button layoutX="70.0" mnemonicParsing="false" onMouseClicked="#fileSave" prefHeight="17.0" prefWidth="70.0" text="ck-Sav" />
+            <Button layoutX="70.0" mnemonicParsing="false" onMouseClicked="#fileSaveAs" prefHeight="17.0" prefWidth="70.0" text="ck-Sav" />
             <Button layoutX="140.0" mnemonicParsing="false" onMouseClicked="#fileOpen" prefHeight="17.0" prefWidth="70.0" text="ck-ope" />
 			</children>
 		</AnchorPane>
