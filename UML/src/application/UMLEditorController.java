@@ -4,6 +4,7 @@ package application;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.nio.channels.SelectableChannel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,8 +55,8 @@ public class UMLEditorController implements Initializable {
 	@FXML
 	TextField paneKlasseName, paneKlasseStereotyp;
 	@FXML
-	ComboBox<String> paneKlasseVererbung;
-
+	ComboBox<String> paneKlasseVererbung, paneKlasseTyp;
+	
 	// Pane Attribut - Felder
 	@FXML
 	TextField paneAttributName, paneAttributTypString, paneAttributInitialwert,
@@ -136,15 +137,15 @@ public class UMLEditorController implements Initializable {
 	
 	
 	// Funktionen
-	// Statusfeld gespeichert - Gr�n
+	// Statusfeld gespeichert - Grün
 	public void statusFeldSave() {
 		statusFeldText.setText("gespeichert...");
 		statusFeld.setStyle("-fx-background-color: #65f565");
 	}
 
-	// Statusfeld gel�scht - Rot
+	// Statusfeld gelöscht - Rot
 	public void statusFeldDelete() {
-		statusFeldText.setText("gel�scht...");
+		statusFeldText.setText("gelöscht...");
 		statusFeld.setStyle("-fx-background-color: #f67d7d");
 	}
 
@@ -351,7 +352,37 @@ public class UMLEditorController implements Initializable {
 		else
 			statusFeldText.setText(klassenTree.getSelectionModel()
 					.getSelectedItems() + " bearbeiten...");
+		
+		//Felder vorbereiten
+		//TODO
+		TreeItem<?> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
+		TreeItem<?> treeRoot = klassenTree.getTreeItem(0);
+		//Check if selectedItem is root
+		//int itemLevel = klassenTree.getTreeItemLevel(selectedItem);
+		if(selectedItem.equals(treeRoot)) {
+			//Root Item
+			paneKlasseTyp.getItems().addAll(
+				"Package",
+				"Klasse",
+				"Interface"
+			);
+			paneKlasseTyp.getSelectionModel().select(0);
+			paneKlasseVererbung.setDisable(true);
+		} else {
+			//Sub Item
+			paneKlasseVererbung.setDisable(true);
+			//Ensure only valid types 
+			/*switch () {
+			case value:
+				
+				break;
 
+			default:
+				break;
+			}*/
+		}
+		
+		
 		// Neue Klasse anlegen
 		// TODO
 
@@ -365,13 +396,50 @@ public class UMLEditorController implements Initializable {
 
 	public void klasseSave() {
 		// TODO Wert schreiben mit Logik
-
+		//Check required fields
+		if(paneKlasseName.getText().isEmpty()) {
+			statusFeldText.setText("Name für Objekt eintragen!");
+			statusFeld.setStyle("-fx-background-color: #f67d7d");
+			return;
+		}
+		
+		//Set icon and create object
+		ImageView itemIcon = null;
+		String name = paneKlasseName.getText();
+		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
+		case "Package":
+			itemIcon = new ImageView(iconPackage);
+			/*Package newPackage = new Package();
+			newPackage.setName(paneKlasseName.getText());*/
+			break;
+		case "Klasse":
+			itemIcon = new ImageView(iconClass);
+			/*Klasse newClass = new Klasse();
+			newClass.setName(paneKlasseName.getText());
+			newClass.setStereotyp(paneKlasseStereotyp.getText());
+			newClass.setType("class");*/
+			break;
+		case "Interface":
+			itemIcon = new ImageView(iconInterface);
+			/*Interface newInterface = new Interface();
+			newInterface.setName(paneKlasseName.getText());
+			newInterface.setStereotyp(paneKlasseStereotyp.getText());
+			newInterface.setType("interface");*/
+		default:
+			break;
+		}
+		
+		//Add item to TreeView
+		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
+		TreeItem<String> treeRoot = klassenTree.getTreeItem(0);
+		TreeItem<String> newItem = new TreeItem<String>(paneKlasseName.getText(), itemIcon );
+		selectedItem.getChildren().add(newItem);
+		
 		statusFeldSave();
 	}
 
 	public void klasseDelete() {
 		// TODO Wert schreiben mit Logik
-
 		statusFeldDelete();
 
 	}
