@@ -15,12 +15,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -29,6 +32,8 @@ import javafx.stage.Window;
 public class UMLEditorController implements Initializable {
 	
 	private UMLEditor umlEditor = UMLEditor.getInstance();
+	public TreeView<String> classTreeBuild = new TreeView<String>();
+	
 	
 
 	// Alle ContentPanes
@@ -71,6 +76,34 @@ public class UMLEditorController implements Initializable {
 //	List<String> datentypenStd = Arrays.asList("boolean", "byte", "char",
 //			"double", "float", "int", "long", "short", "String");
 	List<Datentyp> datentypenStd = new ArrayList<Datentyp>(Arrays.asList(Datentyp.values()));
+
+	
+	
+	private final Node iconRoot = new ImageView(new Image(getClass().getResourceAsStream("TreeRootNode.png")));
+	private final Image iconPackage = new Image(getClass().getResourceAsStream("TreePackage.png"));
+	private final Image iconClass = new Image(getClass().getResourceAsStream("TreeClass.png"));
+	private final Image iconInterface = new Image(getClass().getResourceAsStream("TreeInterface.png"));
+	
+//	private final Node rootIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/root.png")));
+//    private final Image depIcon = new Image(getClass().getResourceAsStream("/images/department.png"));
+//    List<Employee> employees = Arrays.<Employee>asList(
+//            new Employee("Ethan Williams", "Sales Department"),
+//            new Employee("Emma Jones", "Sales Department"),
+//            new Employee("Michael Brown", "Sales Department"),
+//            new Employee("Anna Black", "Sales Department"),
+//            new Employee("Rodger York", "Sales Department"),
+//            new Employee("Susan Collins", "Sales Department"),
+//            new Employee("Mike Graham", "IT Support"),
+//            new Employee("Judy Mayer", "IT Support"),
+//            new Employee("Gregory Smith", "IT Support"),
+//            new Employee("Jacob Smith", "Accounts Department"),
+//            new Employee("Isabella Johnson", "Accounts Department"));
+//    TreeItem<String> rootNode = new TreeItem<String>("MyCompany Human Resources", rootIcon);
+	
+	
+	
+	
+	
 	
 	public String hostname;
 	
@@ -85,9 +118,22 @@ public class UMLEditorController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TreeItem<String> treeRoot = new TreeItem<String>(hostname);
-		klassenTree.setRoot(treeRoot);
-	}
+
+		
+	    
+		TreeItem<String> classTreeBuild = new TreeItem<String>(hostname, iconRoot);
+		
+
+		
+		klassenTree.setRoot(classTreeBuild);
+		
+	    }
+	
+	
+	
+	
+		
+	
 	
 	// Funktionen
 	// Statusfeld gespeichert - Gr�n
@@ -256,19 +302,26 @@ public class UMLEditorController implements Initializable {
 
 		statusFeldText.setText("KlassenTree anzeigen...");
 
-		TreeItem<String> stufeEins = new TreeItem<String>("Stufe 1");
-		TreeItem<String> stufeZwei = new TreeItem<String>("Stufe 2");
-		stufeZwei.getChildren().add(new TreeItem<String>("Stufe 2.1"));
-		TreeItem<String> stufeDrei = new TreeItem<String>("Stufe 3");
-		TreeItem<String> stufeVier = new TreeItem<String>("Stufe 4");
+		TreeItem<String> stufeEins = new TreeItem<String>("Stufe 1", new ImageView(iconClass));
+		TreeItem<String> stufeZwei = new TreeItem<String>("Stufe 2", new ImageView(iconInterface));
+		stufeZwei.getChildren().add(new TreeItem<String>("Stufe 2.1", new ImageView(iconPackage)));
+		TreeItem<String> stufeDrei = new TreeItem<String>("Stufe 3", new ImageView(iconClass));
+		TreeItem<String> stufeVier = new TreeItem<String>("Stufe 4", new ImageView(iconInterface));
 
 		// stufeEins.setExpanded(true);
-
+		
+		
+		
 		stufeEins.getChildren().add(stufeZwei);
 		stufeZwei.getChildren().add(stufeDrei);
 		stufeDrei.getChildren().add(stufeVier);
+		
 
+		
+		
+		
 		klassenTree.setRoot(stufeEins);
+		
 
 	}
 
