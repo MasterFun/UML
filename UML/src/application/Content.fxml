@@ -27,7 +27,7 @@
 				<ComboBox fx:id="paneKlasseVererbung" layoutX="160.0" layoutY="86.0" prefWidth="200.0" />
 				<Label layoutX="50.0" layoutY="90.0" prefWidth="100.0" text="Vererbung von" textAlignment="JUSTIFY" />
 				<Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
-				<ComboBox fx:id="paneKlasseVererbung1" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
+				<ComboBox fx:id="paneKlasseTyp" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
 				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseDelete" prefWidth="90.0" text="Löschen" />
 				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseSave" prefWidth="90.0" text="Speichern" />
 			</children>

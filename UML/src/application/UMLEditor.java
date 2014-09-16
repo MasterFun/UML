@@ -55,7 +55,7 @@ public class UMLEditor {
     }
   }
 
-  // Datei bzw Pfad müssen noch übergeben werden in Methode
+  // Datei bzw Pfad mï¿½ssen noch ï¿½bergeben werden in Methode
   public void speichern() { 
     try {
       ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(datei));
