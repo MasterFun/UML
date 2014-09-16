@@ -251,7 +251,7 @@ public class UMLEditorController implements Initializable {
 				.observableList(new ArrayList<String>());
 
 		// ersten Eintrag erzeugen
-		observableListOperation.add("hinzuf�gen...");
+		observableListOperation.add("hinzufügen...");
 		observableListOperation.add("Operation1");
 
 		// Liste einlesen aus Klasse
