@@ -298,7 +298,26 @@ public class UMLEditorController implements Initializable {
 		else
 			statusFeldText.setText(klassenTree.getSelectionModel()
 					.getSelectedItems() + " bearbeiten...");
-
+		
+		//Felder vorbereiten
+		//TODO
+		TreeItem<?> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
+		TreeItem<?> treeRoot = klassenTree.getTreeItem(0);
+		//Check if selectedItem is root
+		//int itemLevel = klassenTree.getTreeItemLevel(selectedItem);
+		if(selectedItem.equals(treeRoot)) {
+			//Root Item
+			paneAttributTyp.getItems().addAll(
+				"Package",
+				"Klasse",
+				"Interface"
+			);
+		} else {
+			//Sub Item
+			
+		}
+		
+		
 		// Neue Klasse anlegen
 		// TODO
 
