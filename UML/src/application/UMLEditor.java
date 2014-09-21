@@ -67,7 +67,6 @@ public class UMLEditor {
     }
   }
 
-
 public static UMLEditor getInstance() {
 	    if (UMLObject == null) {  	UMLObject = new UMLEditor();
 		    }

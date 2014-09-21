@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -68,12 +69,12 @@ public class UMLEditorController implements Initializable {
 	CheckBox paneAttributSetter, paneAttributGetter, paneAttributAbgeleitet,
 			paneAttributKonstante, paneAttributKlassenattribut;
 	
-	// Hilfslisten f�r Felder
-	// Liste f�r Dropdown Sichtbarkeit
+	// Hilfslisten für Felder
+	// Liste für Dropdown Sichtbarkeit
 //	List<String> sichtbarkeit = Arrays.asList("public", "private", "protected");
 	List<Sichtbarkeit> sichtbarkeit = new ArrayList<Sichtbarkeit>(Arrays.asList(Sichtbarkeit.values()));
 
-	// Liste f�r Dropdown Typ - Standard Datentypen
+	// Liste für Dropdown Typ - Standard Datentypen
 //	List<String> datentypenStd = Arrays.asList("boolean", "byte", "char",
 //			"double", "float", "int", "long", "short", "String");
 	List<Datentyp> datentypenStd = new ArrayList<Datentyp>(Arrays.asList(Datentyp.values()));
@@ -128,7 +129,7 @@ public class UMLEditorController implements Initializable {
 		
 		klassenTree.setRoot(classTreeBuild);
 		
-	    }
+	}
 	
 	
 	
@@ -153,14 +154,14 @@ public class UMLEditorController implements Initializable {
 		paneOperation.setVisible(false);
 		paneAttribut.setVisible(false);
 		paneKlasse.setVisible(false);
-		// Statusfeldfarbe zur�cksetzen
+		// Statusfeldfarbe zurücksetzen
 		statusFeld.setStyle("-fx-background-color: #c0c0c0");
 	}
 
 	// ----- Attribut -----
-	// TODO bauen, wenn ein Objekt ausgew�hlt ist oder Neu angelegt wird
+	// TODO bauen, wenn ein Objekt ausgewählt ist oder Neu angelegt wird
 
-	// Liste der Attribute f�llen
+	// Liste der Attribute füllen
 	public void listAttributAnzeigen() {
 
 		statusFeldText.setText("Liste Attribute anzeigen...");
@@ -170,7 +171,7 @@ public class UMLEditorController implements Initializable {
 				.observableList(new ArrayList<String>());
 
 		// ersten Eintrag erzeugen
-		observableListAttribut.add("hinzuf�gen...");
+		observableListAttribut.add("hinzufügen...");
 		observableListAttribut.add("Attribut1");
 
 		// Liste einlesen aus Klasse
@@ -195,16 +196,16 @@ public class UMLEditorController implements Initializable {
 		// paneAttributAbgeleitet, paneAttributKonstante,
 		// paneAttributKlassenattribut;
 
-		// Feld paneAttributSichtbarkeit bef�llen
-		// TODO beim bearbeiten von Datens�tzen das richtige Feld auf "selected"
+		// Feld paneAttributSichtbarkeit befüllen
+		// TODO beim bearbeiten von Datensätzen das richtige Feld auf "selected"
 		// setzen
 		paneAttributSichtbarkeit.getItems().clear();
 		for (Sichtbarkeit sicht : sichtbarkeit) {
 			paneAttributSichtbarkeit.getItems().add(sicht.toString());
 		}
 
-		// Feld paneAttributTyp bef�llen
-		// TODO beim bearbeiten von Datens�tzen das richtige Feld auf "selected"
+		// Feld paneAttributTyp befüllen
+		// TODO beim bearbeiten von Datensätzen das richtige Feld auf "selected"
 		// setzen
 		paneAttributTyp.getItems().clear();
 		for (Datentyp typ : datentypenStd) {
@@ -213,8 +214,8 @@ public class UMLEditorController implements Initializable {
 
 		// Neues Attribut anlegen
 		if (listAttribut.getSelectionModel().getSelectedItem()
-				.equals("hinzuf�gen...")) {
-			statusFeldText.setText("neues Attribut hinzuf�gen...");
+				.equals("hinzufügen...")) {
+			statusFeldText.setText("neues Attribut hinzufügen...");
 		}
 
 		// Attribut bearbeiten
@@ -240,9 +241,9 @@ public class UMLEditorController implements Initializable {
 	// -------------------------
 
 	// ----- Operation -----
-	// TODO bauen, wenn ein Objekt ausgew�hlt ist oder Neu angelegt wird
+	// TODO bauen, wenn ein Objekt ausgewählt ist oder Neu angelegt wird
 
-	// Liste der Operation f�llen
+	// Liste der Operation füllen
 	public void listOperationAnzeigen() {
 
 		statusFeldText.setText("Liste Operationen anzeigen...");
@@ -252,7 +253,7 @@ public class UMLEditorController implements Initializable {
 				.observableList(new ArrayList<String>());
 
 		// ersten Eintrag erzeugen
-		observableListOperation.add("hinzuf�gen...");
+		observableListOperation.add("hinzufügen...");
 		observableListOperation.add("Operation1");
 
 		// Liste einlesen aus Klasse
@@ -272,8 +273,8 @@ public class UMLEditorController implements Initializable {
 
 		// Neue Operation anlegen
 		if (listOperation.getSelectionModel().getSelectedItem()
-				.equals("hinzuf�gen...")) {
-			statusFeldText.setText("Neue Operationen hinzuf�gen...");
+				.equals("hinzufügen...")) {
+			statusFeldText.setText("Neue Operationen hinzufügen...");
 		}
 
 		// Operation bearbeiten
@@ -326,7 +327,7 @@ public class UMLEditorController implements Initializable {
 
 	}
 
-	// Abfrage f�r Liste Klasse, damit keine Nullpointer Exeption kommt
+	// Abfrage für Liste Klasse, damit keine Nullpointer Exeption kommt
 	public void klasseSetCheckEmpty() {
 
 		if (klassenTree.getSelectionModel().isEmpty()) {
@@ -386,7 +387,7 @@ public class UMLEditorController implements Initializable {
 		// Neue Klasse anlegen
 		// TODO
 
-		// Klasse bearbeiten - Pane mit Werten bef�llen
+		// Klasse bearbeiten - Pane mit Werten befüllen
 		// TODO
 		// paneKlasseName.setText(klassenTree.getSelectionModel().getSelectedItem().getValue().toString());
 		// paneKlasseStereotyp
@@ -397,6 +398,8 @@ public class UMLEditorController implements Initializable {
 	public void klasseSave() {
 		// TODO Wert schreiben mit Logik
 		//Check required fields
+		ArrayList<Object> objectList = new ArrayList<Object>();
+		
 		if(paneKlasseName.getText().isEmpty()) {
 			statusFeldText.setText("Name für Objekt eintragen!");
 			statusFeld.setStyle("-fx-background-color: #f67d7d");
@@ -405,32 +408,38 @@ public class UMLEditorController implements Initializable {
 		
 		//Set icon and create object
 		ImageView itemIcon = null;
+		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
 		String name = paneKlasseName.getText();
 		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
 		case "Package":
 			itemIcon = new ImageView(iconPackage);
-			/*Package newPackage = new Package();
-			newPackage.setName(paneKlasseName.getText());*/
+			Package newPackage = new Package();
+			newPackage.setName(paneKlasseName.getText());
+			newPackage.setParent(selectedItem);
+			objectList.add(newPackage);
 			break;
 		case "Klasse":
 			itemIcon = new ImageView(iconClass);
-			/*Klasse newClass = new Klasse();
+			Klasse newClass = new Klasse();
 			newClass.setName(paneKlasseName.getText());
 			newClass.setStereotyp(paneKlasseStereotyp.getText());
-			newClass.setType("class");*/
+			newClass.setType("class");
+			newClass.setParent(selectedItem);
+			objectList.add(newClass);
 			break;
 		case "Interface":
 			itemIcon = new ImageView(iconInterface);
-			/*Interface newInterface = new Interface();
+			Interface newInterface = new Interface();
 			newInterface.setName(paneKlasseName.getText());
 			newInterface.setStereotyp(paneKlasseStereotyp.getText());
-			newInterface.setType("interface");*/
+			newInterface.setType("interface");
+			newInterface.setParent(selectedItem);
+			objectList.add(newInterface);
 		default:
 			break;
 		}
 		
 		//Add item to TreeView
-		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
 		TreeItem<String> treeRoot = klassenTree.getTreeItem(0);
 		TreeItem<String> newItem = new TreeItem<String>(paneKlasseName.getText(), itemIcon );
 		selectedItem.getChildren().add(newItem);
@@ -440,6 +449,21 @@ public class UMLEditorController implements Initializable {
 
 	public void klasseDelete() {
 		// TODO Wert schreiben mit Logik
+		
+		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
+		TreeItem<String> currentItem = selectedItem;
+		//ArrayList<TreeItem> childList = new ArrayList<TreeItem>();
+ 		
+		//while(!currentItem.isLeaf()) {
+			//childList.add(currentItem);
+			ObservableList<TreeItem<String>> childrenList = currentItem.getChildren();
+			System.out.println(childrenList.toString());
+			currentItem = childrenList.get(0);
+			childrenList = currentItem.getChildren();
+			System.out.println(childrenList.toString());
+					//}
+		//childList.add(currentItem);
+ 		
 		statusFeldDelete();
 
 	}
@@ -449,8 +473,8 @@ public class UMLEditorController implements Initializable {
 
 	
 	
-	// ----- Men� -> DAtei -----
-	// Men� -> Datei �ffnen
+	// ----- Menü -> Datei -----
+	// Menü -> Datei öffnen
 	public void fileOpen(){
 		Window stage = null;
 		FileChooser fileChooser = new FileChooser();
@@ -465,7 +489,7 @@ public class UMLEditorController implements Initializable {
 	}	
 	
 	
-	// Men� -> Datei speichern unter...
+	// Menü -> Datei speichern unter...
 	public void fileSaveAs(){
 		Window stage = null;
 		FileChooser fileChooser = new FileChooser();
@@ -478,7 +502,7 @@ public class UMLEditorController implements Initializable {
 		//TODO Dateiname bekannt, dann Methode save aufrufen!! 
 	}
 	
-	// Men� -> Datei speichern 
+	// Menü -> Datei speichern 
 	public void fileSave(){
 		//TODO Methode zum speichern aufrufen mit bekanntem Dateiname
 	}
@@ -563,10 +587,10 @@ public class UMLEditorController implements Initializable {
 	
 	
 	
-	// Background wird ge�ndert
+	// Background wird geändert
 	public void ckEasterEggColor() {
 
-		// Farbe �ndern
+		// Farbe ändern
 		final String alphabet = "0123456789ABCDE";
 		final int N = alphabet.length();
 
@@ -588,7 +612,7 @@ public class UMLEditorController implements Initializable {
 
 
 
-	// Test Hintergrund �ndern
+	// Test Hintergrund ändern
 //TODO geht noch nicht
 //  Random zahl = new Random();
 //  String setBgNew = "-fx-background-image: url(\"background" + (1 + zahl.nextInt(9)) + ".png\");";
