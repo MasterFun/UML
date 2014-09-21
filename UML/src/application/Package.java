@@ -2,8 +2,8 @@ package application;
 
 import javafx.scene.control.TreeItem;
 
-public class Package {
-	private String name;
+public class Package extends Typ {
+
 	private TreeItem<?> parent;
 
 	public TreeItem<?> getParent() {
@@ -14,12 +14,12 @@ public class Package {
 		this.parent = parent;
 	}
 
-	public String getName() {
-		return name;
+	public Package(String name, String stereotyp) {
+
+		super.setName(name);
+		super.setStereotyp(stereotyp);
+		super.setType("Package");
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 }

@@ -4,44 +4,43 @@ import java.io.Serializable;
 
 public class Beziehung implements Serializable {
 	
-	public String getRollennamen() {
-		return rollennamen;
+	private static final long serialVersionUID = 418365226982860206L;
+	private String rollenname;
+	private Typ zieltyp;
+	private String navigierbarkeit;
+	private String sichtbar;
+	private String kardinalitaet;
+
+	// Neue Beziehung
+	public Beziehung(String rollenname, Typ zieltyp, String navigierbarkeit, String sichtbar, String kardinalitaet){
+
+			this.rollenname = rollenname;
+			this.zieltyp = zieltyp;
+			this.navigierbarkeit = navigierbarkeit;
+			this.sichtbar = sichtbar;
+			this.kardinalitaet = kardinalitaet;
 	}
-	public void setRollennamen(String rollennamen) {
-		this.rollennamen = rollennamen;
+	
+	
+	
+	
+	public String getRollenname() {
+		return rollenname;
 	}
 	public Typ getZieltyp() {
 		return zieltyp;
 	}
-	public void setZieltyp(Typ zieltyp) {
-		this.zieltyp = zieltyp;
-	}
 	public String getNavigierbarkeit() {
 		return navigierbarkeit;
 	}
-	public void setNavigierbarkeit(String navigierbarkeit) {
-		this.navigierbarkeit = navigierbarkeit;
-	}
-	public Sichtbarkeit getSichtbar() {
+	public String getSichtbar() {
 		return sichtbar;
-	}
-	public void setSichtbar(Sichtbarkeit sichtbar) {
-		this.sichtbar = sichtbar;
 	}
 	public String getKardinalitaet() {
 		return kardinalitaet;
 	}
-	public void setKardinalitaet(String kardinalitaet) {
-		this.kardinalitaet = kardinalitaet;
-	}
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 418365226982860206L;
-	private String rollennamen;
-	private Typ zieltyp;
-	private String navigierbarkeit;
-	private Sichtbarkeit sichtbar;
-	private String kardinalitaet;
+
+	
+	
 	
 }

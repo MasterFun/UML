@@ -18,6 +18,7 @@ public class Typ implements Serializable {
 	public void setParent(TreeItem<?> parent) {
 		this.parent = parent;
 	}
+
 	public String getName() {
 		return name;
 	}

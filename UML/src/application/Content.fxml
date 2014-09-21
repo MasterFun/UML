@@ -10,8 +10,8 @@
 
 <AnchorPane fx:id="painMain" prefHeight="625.0" prefWidth="1000.0" styleClass="panebg" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UMLEditorController">
 	<children>
-		<TreeView fx:id="klassenTree" onMouseClicked="#klasseSetCheckEmpty" prefHeight="550.0" prefWidth="200.0" />
-		<Button layoutY="561.0" mnemonicParsing="false" onMouseClicked="#klasseSet" prefHeight="20.0" prefWidth="90.0" text="Neu" />
+		<TreeView fx:id="klassenTree" onMouseClicked="#objectEdit" prefHeight="550.0" prefWidth="200.0" />
+		<Button layoutY="561.0" mnemonicParsing="false" onMouseClicked="#objectNew" prefHeight="20.0" prefWidth="90.0" text="Neu" />
 		<Button layoutX="100.0" layoutY="561.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" text="Löschen" />
 		<Pane fx:id="paneKlasse" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
 			<children>
@@ -20,6 +20,11 @@
 						<Font name="System Bold" size="30.0" />
 					</font>
 				</Text>
+            <Text fx:id="paneKlasseStatus" layoutX="396.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="90.0">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
 				<Label layoutX="50.0" layoutY="30.0" prefWidth="100.0" text="Name" textAlignment="RIGHT" />
 				<TextField fx:id="paneKlasseName" layoutX="160.0" layoutY="26.0" prefWidth="200.0" />
 				<Label layoutX="50.0" layoutY="60.0" prefWidth="100.0" text="Sterotyp" textAlignment="JUSTIFY" />
@@ -29,7 +34,7 @@
 				<Label layoutX="50.0" layoutY="120.0" prefWidth="100.0" text="Typ" textAlignment="JUSTIFY" />
 				<ComboBox fx:id="paneKlasseTyp" layoutX="160.0" layoutY="116.0" prefWidth="200.0" />
 				<Button layoutX="270.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseDelete" prefWidth="90.0" text="Löschen" />
-				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#klasseSave" prefWidth="90.0" text="Speichern" />
+				<Button layoutX="160.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#objectSave" prefWidth="90.0" text="Speichern" />
 			</children>
 		</Pane>
 		<Pane fx:id="paneAttribut" layoutX="200.0" prefHeight="600.0" prefWidth="500.0" visible="false">
@@ -125,15 +130,15 @@
 		</Accordion>
 		<AnchorPane fx:id="statusFeld" layoutY="600.0" onMouseClicked="#ckEasterEggColor" prefHeight="25.0" prefWidth="1000.0" style="-fx-background-color: #c0c0c0;">
 			<children>
-            <Pane layoutX="960.0" prefHeight="25.0" prefWidth="40.0" styleClass="bgflag" stylesheets="@application.css" />
+				<Pane layoutX="960.0" prefHeight="25.0" prefWidth="40.0" styleClass="bgflag" stylesheets="@application.css" />
 				<Text fx:id="statusFeldText" layoutX="10.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="940.0">
 					<font>
 						<Font name="System Bold" size="9.0" />
 					</font>
 				</Text>
-				<Button mnemonicParsing="false" onMouseClicked="#listKlassenTree" prefHeight="17.0" prefWidth="70.0" text="ck-Spez." />
-            <Button layoutX="70.0" mnemonicParsing="false" onMouseClicked="#fileSaveAs" prefHeight="17.0" prefWidth="70.0" text="ck-Sav" />
-            <Button layoutX="140.0" mnemonicParsing="false" onMouseClicked="#fileOpen" prefHeight="17.0" prefWidth="70.0" text="ck-ope" />
+				<Button mnemonicParsing="false" prefHeight="17.0" prefWidth="70.0" text="ck-Spez." />
+				<Button layoutX="70.0" mnemonicParsing="false" onMouseClicked="#fileSaveAs" prefHeight="17.0" prefWidth="70.0" text="ck-Sav" />
+				<Button layoutX="140.0" mnemonicParsing="false" onMouseClicked="#fileOpen" prefHeight="17.0" prefWidth="70.0" text="ck-ope" />
 			</children>
 		</AnchorPane>
 		<Separator layoutX="700.0" orientation="VERTICAL" prefHeight="600.0" />
