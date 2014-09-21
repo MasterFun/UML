@@ -8,6 +8,9 @@ public class Typ implements Serializable {
 	private String name;
 	private String stereotyp;
 	private String type;
+	
+
+
 	public String getName() {
 		return name;
 	}

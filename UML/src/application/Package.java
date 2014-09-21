@@ -1,14 +1,15 @@
 package application;
 
-public class Package {
-	private String name;
+public class Package extends Typ {
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
+	public Package(String name, String stereotyp) {
+
+		super.setName(name);
+		super.setStereotyp(stereotyp);
+		super.setType("Package");
 	}
+	
+	
 	
 }

@@ -1,55 +1,49 @@
 package application;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 
-public class Attribut implements Serializable{
+public class Attribut implements Serializable {
 
 	private static final long serialVersionUID = 5546661732545627789L;
 
-	
+	private String name;
+	private String sichtbar;
+	private String typ;
+	private String initialwert;
+	private String stereotyp;
+
+	// Neues Attribut
+	public Attribut(String name, String sichtbar, String typ,
+			String initialwert, String stereotyp) {
+
+		this.name = name;
+		this.sichtbar = sichtbar;
+		this.typ = typ;
+		this.initialwert = initialwert;
+		this.stereotyp = stereotyp;
+
+	}
+
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	
-	public Sichtbarkeit getSichtbar() {
+	public String getSichtbar() {
 		return sichtbar;
 	}
-	public void setSichtbar(Sichtbarkeit sichtbar) {
-		this.sichtbar = sichtbar;
-	}
 
-	
 	public String getTyp() {
 		return typ;
 	}
-	public void setTyp(String typ) {
-		this.typ = typ;
-	}
 
-	
 	public String getInitialwert() {
 		return initialwert;
 	}
-	public void setInitialwert(String initialwert) {
-		this.initialwert = initialwert;
-	}
-
 
 	public String getStereotyp() {
 		return stereotyp;
 	}
-	public void setStereotyp(String stereotyp) {
-		this.stereotyp = stereotyp;
-	}
-	private String name;
-	private Sichtbarkeit sichtbar;
-	private String typ;
-	private String initialwert;
-	private String stereotyp;
-	
-	
+
 }
