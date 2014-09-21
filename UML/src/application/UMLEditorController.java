@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
@@ -34,6 +35,8 @@ import javafx.stage.Window;
 public class UMLEditorController implements Initializable {
 	
 	private UMLEditor umlEditor = UMLEditor.getInstance();
+	public TreeView<String> classTreeBuild = new TreeView<String>();
+	
 	
 	// Alle ContentPanes
 	@FXML
