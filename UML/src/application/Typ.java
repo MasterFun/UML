@@ -12,11 +12,11 @@ public class Typ implements Serializable {
 	private String type;
 	private String parentName;
 
-	public String getChildName() {
+	public String getParentName() {
 		return parentName;
 	}
-	public void setChildName(String childName) {
-		this.parentName = childName;
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 	public String getName() {
 		return name;

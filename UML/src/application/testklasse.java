@@ -11,7 +11,7 @@ public class testklasse {
 
 	public static void main(String[] args) {
 
-//		// UMLEditor umlEditor = UMLEditor.getInstance();
+		UMLEditor umlEditor = UMLEditor.getInstance();
 //
 //
 //		
@@ -40,25 +40,63 @@ public class testklasse {
 //		
 //		
 //		// Testklassen anlegen
-		ArrayList<Klasse> klassen = new ArrayList<Klasse>();
-		Klasse kla = new Klasse("Klasse1", "Stereo", "Root");
-		klassen.add(kla);
-		Klasse kla2 = new Klasse("Klasse2", "Stereo", "Klasse1");
-		klassen.add(kla2);
+//		ArrayList<Klasse> klassen = new ArrayList<Klasse>();
+		Object klasseEins = umlEditor.klasseNeu("Klasse 1", "stereotyp", "parentName");
+		Object InterfaceEins = umlEditor.interfaceNeu("Interface1111", "stereotyp", null);
 		
-		System.out.println(kla.getName());
+		String bla = umlEditor.typeCheck(klasseEins);
+		System.out.println(bla);
+		
+		Object geholtesObject= umlEditor.holeObjekt(klasseEins);
+		Object geholtesInterface= umlEditor.holeObjekt(InterfaceEins);
+		
+		Klasse test = (Klasse) umlEditor.holeObjekt(klasseEins);
+		Interface testi = (Interface) umlEditor.holeObjekt(InterfaceEins);
+		System.out.println(test.getName());
+		System.out.println(testi.getName());
+		
+		
+		umlEditor.klasseBearbeiten("Klasse bearbeitet", "stereotyp neu", "parentNameNeu", geholtesObject);
+		umlEditor.interfaceBearbeiten("Interfaceneu", "stereotyp", "parentName", geholtesInterface);
+		
+		Klasse testk1 = (Klasse) umlEditor.holeObjekt(klasseEins);
+		System.out.println(testk1.getName());
+		Interface testi1 = (Interface) umlEditor.holeObjekt(geholtesInterface);
+		System.out.println(testi1.getName());
+		
+		umlEditor.attributNeu("name", "sichtbar", "typ", "initialwert", "stereotyp", testk1);
+		
+		
+//		System.out.println(umlEditor.objectDerKlasse(geholtesObject));
+//		System.out.println(umlEditor.nameDerKlasse(geholtesObject));
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		Klasse kla = new Klasse("Klasse1", "Stereo", "Root");
+//		klassen.add(kla);
+//		Klasse kla2 = new Klasse("Klasse2", "Stereo", "Klasse1");
+//		klassen.add(kla2);
+		
+//		System.out.println(kla.getName());
 //
 //		// Attribute anlegen
-		for (int faktor = 1; faktor <= 3; faktor++) {
-			kla.addAttribut(new Attribut("Attribute " + faktor, "sichtbar",
-					"typ", "initialwert", "stereotyp"));
-		}
+//		for (int faktor = 1; faktor <= 3; faktor++) {
+//			kla.addAttribut(new Attribut("Attribute " + faktor, "sichtbar",
+//					"typ", "initialwert", "stereotyp"));
+//		}
 //		// Print Out Attribute
-		List<Attribut> attributeKlasse = kla.getAttribute();
-		System.out.println("Attribute:");
-		for (Attribut a : attributeKlasse) {
-			System.out.println(a.getName());
-		}
+//		List<Attribut> attributeKlasse = kla.getAttribute();
+//		System.out.println("Attribute:");
+//		for (Attribut a : attributeKlasse) {
+//			System.out.println(a.getName());
+//		}
 
 //		// Operationen anlegen
 //		for (int faktor = 1; faktor <= 3; faktor++) {

@@ -24,26 +24,49 @@ public class Operation implements Serializable {
 		this.sichtbar = sichtbar;
 	}
 	// ----------------------------------------------------------------------------
-	
-	
+
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public boolean isStatic() {
 		return isStatic;
 	}
 
+	public void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
+	}
+
 	public String getRueckgabetyp() {
 		return rueckgabetyp;
+	}
+
+	public void setRueckgabetyp(String rueckgabetyp) {
+		this.rueckgabetyp = rueckgabetyp;
 	}
 
 	public String getStereotyp() {
 		return stereotyp;
 	}
 
+	public void setStereotyp(String stereotyp) {
+		this.stereotyp = stereotyp;
+	}
+
 	public String getSichtbar() {
 		return sichtbar;
 	}
+
+	public void setSichtbar(String sichtbar) {
+		this.sichtbar = sichtbar;
+	}
+	
+	
+	
+
 
 }

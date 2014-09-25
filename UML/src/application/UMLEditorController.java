@@ -319,67 +319,67 @@ public class UMLEditorController implements Initializable {
 	// -------------------------
 
 	// ----- KlassenTree -----
-	public void listKlassenTree() {
-
-		// Auswahl welche Methode zum speichern gewählt wird
-		// Fehler anzeigen, wenn kein Typ ausgewählt
-		if (paneKlasseTyp.getSelectionModel().getSelectedItem().isEmpty()) {
-			// TODO ck 20.09.2014
-			// Fehler zurück werfen, dass es leer ist!! Muss noch gebaut werden!!
-			System.out.println("Kein Typ angegeben");
-		} 
-		
-		
-		
-		else {
-			switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
-			case "Package":
-				umlEditor.neuesPackage(paneKlasseName.getText(),
-						paneKlasseStereotyp.getText());
-				break;
-			case "Klasse":
-				umlEditor.neueKlasse(paneKlasseName.getText(),
-						paneKlasseStereotyp.getText(), null); // hier muss noch abgefangen werden, wenn es vererbt wird
-				break;
-			case "Interface":
-				// Neues Interface
-				umlEditor.neuesInterface(paneKlasseName.getText(),
-						paneKlasseStereotyp.getText());
-			default:
-				break;
-			}
-		}
-		
-		
-		// schreiben in Baum
-		//Set icon and create object
-		ImageView itemIcon = null;
-		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
-		case "Package":
-			itemIcon = new ImageView(iconPackage);
-			break;
-		case "Klasse":
-			itemIcon = new ImageView(iconClass);
-			break;
-		case "Interface":
-			itemIcon = new ImageView(iconInterface);
-		default:
-			break;
-		}
-		
-		//Add item to TreeView
-		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
-		TreeItem<String> newItem = new TreeItem<String>(paneKlasseName.getText(), itemIcon);
-		newItem.setExpanded(true);
-		selectedItem.getChildren().add(newItem);	
-		
-		
-		//diable all panes
-		disableContentPanes();
-		
-		klassenTree.setRoot(newItem);
-		
-	}
+//	public void listKlassenTree() {
+//
+//		// Auswahl welche Methode zum speichern gewählt wird
+//		// Fehler anzeigen, wenn kein Typ ausgewählt
+//		if (paneKlasseTyp.getSelectionModel().getSelectedItem().isEmpty()) {
+//			// TODO ck 20.09.2014
+//			// Fehler zurück werfen, dass es leer ist!! Muss noch gebaut werden!!
+//			System.out.println("Kein Typ angegeben");
+//		} 
+//		
+//		
+//		
+//		else {
+//			switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
+//			case "Package":
+//				umlEditor.neuesPackage(paneKlasseName.getText(),
+//						paneKlasseStereotyp.getText());
+//				break;
+//			case "Klasse":
+//				umlEditor.neueKlasse(paneKlasseName.getText(),
+//						paneKlasseStereotyp.getText(), null); // hier muss noch abgefangen werden, wenn es vererbt wird
+//				break;
+//			case "Interface":
+//				// Neues Interface
+//				umlEditor.neuesInterface(paneKlasseName.getText(),
+//						paneKlasseStereotyp.getText());
+//			default:
+//				break;
+//			}
+//		}
+//		
+//		
+//		// schreiben in Baum
+//		//Set icon and create object
+//		ImageView itemIcon = null;
+//		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
+//		case "Package":
+//			itemIcon = new ImageView(iconPackage);
+//			break;
+//		case "Klasse":
+//			itemIcon = new ImageView(iconClass);
+//			break;
+//		case "Interface":
+//			itemIcon = new ImageView(iconInterface);
+//		default:
+//			break;
+//		}
+//		
+//		//Add item to TreeView
+//		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
+//		TreeItem<String> newItem = new TreeItem<String>(paneKlasseName.getText(), itemIcon);
+//		newItem.setExpanded(true);
+//		selectedItem.getChildren().add(newItem);	
+//		
+//		
+//		//diable all panes
+//		disableContentPanes();
+//		
+//		klassenTree.setRoot(newItem);
+//		
+//	}
 
 	// Abfrage für Liste Klasse, damit keine Nullpointer Exeption kommt
 	public void klasseSetCheckEmpty() {
@@ -414,34 +414,34 @@ public class UMLEditorController implements Initializable {
 			disableContentPanes();
 		}
 
-		else{
+//		else{
+//
+//			String switchvar = umlEditor.typeCheck(klassenTree
+//					.getSelectionModel().getSelectedItem().getValue());
+//			switch (switchvar) {
+//			case "Klasse":
+//				Klasse klasseHolen = umlEditor.holeKlasse(klassenTree
+//						.getSelectionModel().getSelectedItem().getValue());
+//				paneKlasseName.setText(klasseHolen.getName());
+//				paneKlasseStereotyp.setText(klasseHolen.getStereotyp());
+//				paneKlasseTyp.getSelectionModel().select(klasseHolen.getType());
+//				break;
+//			case "Interface":
+//				Interface interfaceHolen = umlEditor.holeInterface(klassenTree
+//						.getSelectionModel().getSelectedItem().getValue());
+//				paneKlasseName.setText(interfaceHolen.getName());
+//				paneKlasseStereotyp.setText(interfaceHolen.getStereotyp());
+//				paneKlasseTyp.getSelectionModel().select(
+//						interfaceHolen.getType());
+//				break;
+//			default:
+//				// Package
+//				break;
+//		
+//		}
 
-			String switchvar = umlEditor.typeCheck(klassenTree
-					.getSelectionModel().getSelectedItem().getValue());
-			switch (switchvar) {
-			case "Klasse":
-				Klasse klasseHolen = umlEditor.holeKlasse(klassenTree
-						.getSelectionModel().getSelectedItem().getValue());
-				paneKlasseName.setText(klasseHolen.getName());
-				paneKlasseStereotyp.setText(klasseHolen.getStereotyp());
-				paneKlasseTyp.getSelectionModel().select(klasseHolen.getType());
-				break;
-			case "Interface":
-				Interface interfaceHolen = umlEditor.holeInterface(klassenTree
-						.getSelectionModel().getSelectedItem().getValue());
-				paneKlasseName.setText(interfaceHolen.getName());
-				paneKlasseStereotyp.setText(interfaceHolen.getStereotyp());
-				paneKlasseTyp.getSelectionModel().select(
-						interfaceHolen.getType());
-				break;
-			default:
-				// Package
-				break;
-		
-		}
 
-
-		}
+//		}
 	}
 	
 	
@@ -485,45 +485,45 @@ public class UMLEditorController implements Initializable {
 		ImageView itemIcon = null;
 		TreeItem<String> selectedItem = klassenTree.getSelectionModel().getSelectedItem();
 		String name = paneKlasseName.getText();
-		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
-		case "Package":
-			itemIcon = new ImageView(iconPackage);
-			Package newPackage = new Package(name, name);
-			newPackage.setName(paneKlasseName.getText());
-			newPackage.setParent(selectedItem);
-			objectList.add(newPackage);
-			break;
-		//switch (switchvar) {
-		case "Klasse":
-			itemIcon = new ImageView(iconClass);
-			//TODO Was soll hier als letzter Parameter mitgegeben werden?
-			Klasse newClass = new Klasse(name, name, null);
-			newClass.setName(paneKlasseName.getText());
-			newClass.setStereotyp(paneKlasseStereotyp.getText());
-			newClass.setType("class");
-			newClass.setParent(selectedItem);
-			objectList.add(newClass);
-			// Neue Klasse
-			//TODO Sehe nicht genau was du hier machen willst?
-			//paneKlasseTyp.getItems().addAll(typ[1], typ[2]);
-			break;
-		case "Interface":
-			itemIcon = new ImageView(iconInterface);
-			Interface newInterface = new Interface(name, name);
-			newInterface.setName(paneKlasseName.getText());
-			newInterface.setStereotyp(paneKlasseStereotyp.getText());
-			newInterface.setType("interface");
-			newInterface.setParent(selectedItem);
-			objectList.add(newInterface);
-			// Neues Interface
-			//TODO Sehe nicht genau was du hier machen willst?
-			//paneKlasseTyp.getItems().addAll(typ[2]);
-			break;
-		default:
-			//TODO Sehe nicht genau was du hier machen willst?
-			//paneKlasseTyp.getItems().addAll(typ);
-			break;
-		}
+//		switch (paneKlasseTyp.getSelectionModel().getSelectedItem()) {
+//		case "Package":
+//			itemIcon = new ImageView(iconPackage);
+//			Package newPackage = new Package(name, name);
+//			newPackage.setName(paneKlasseName.getText());
+//			newPackage.setParent(selectedItem);
+//			objectList.add(newPackage);
+//			break;
+//		//switch (switchvar) {
+//		case "Klasse":
+//			itemIcon = new ImageView(iconClass);
+//			//TODO Was soll hier als letzter Parameter mitgegeben werden?
+//			Klasse newClass = new Klasse(name, name, null);
+//			newClass.setName(paneKlasseName.getText());
+//			newClass.setStereotyp(paneKlasseStereotyp.getText());
+//			newClass.setType("class");
+//			newClass.setParent(selectedItem);
+//			objectList.add(newClass);
+//			// Neue Klasse
+//			//TODO Sehe nicht genau was du hier machen willst?
+//			//paneKlasseTyp.getItems().addAll(typ[1], typ[2]);
+//			break;
+//		case "Interface":
+//			itemIcon = new ImageView(iconInterface);
+//			Interface newInterface = new Interface(name, name);
+//			newInterface.setName(paneKlasseName.getText());
+//			newInterface.setStereotyp(paneKlasseStereotyp.getText());
+//			newInterface.setType("interface");
+//			newInterface.setParent(selectedItem);
+//			objectList.add(newInterface);
+//			// Neues Interface
+//			//TODO Sehe nicht genau was du hier machen willst?
+//			//paneKlasseTyp.getItems().addAll(typ[2]);
+//			break;
+//		default:
+//			//TODO Sehe nicht genau was du hier machen willst?
+//			//paneKlasseTyp.getItems().addAll(typ);
+//			break;
+//		}
 		
 		//Add item to TreeView
 		TreeItem<String> treeRoot = klassenTree.getTreeItem(0);

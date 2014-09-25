@@ -26,6 +26,26 @@ public class Attribut implements Serializable {
 
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSichtbar(String sichtbar) {
+		this.sichtbar = sichtbar;
+	}
+
+	public void setTyp(String typ) {
+		this.typ = typ;
+	}
+
+	public void setInitialwert(String initialwert) {
+		this.initialwert = initialwert;
+	}
+
+	public void setStereotyp(String stereotyp) {
+		this.stereotyp = stereotyp;
+	}
+
 	public String getName() {
 		return name;
 	}

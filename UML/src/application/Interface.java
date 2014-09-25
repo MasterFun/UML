@@ -12,7 +12,7 @@ public class Interface extends Typ {
 		super.setName(name);
 		super.setStereotyp(stereotyp);
 		super.setType("Interface");
-		super.setChildName(parentName);
+		super.setParentName(parentName);
 	}
 	// ----------------------------------------------------------------------------
 

@@ -11,7 +11,7 @@ public class Klasse extends Typ {
 	// TODO
 	// Wenn das Feld ausgefüllt ist, dann wird die übergeordnete Klasse zur
 	// Superklasse
-	private Klasse vererbungVon;
+//	private Klasse vererbungVon;
 	private List<Attribut> attribute;
 	private List<Operation> operationen;
 	private List<Beziehung> beziehungen;
@@ -25,7 +25,7 @@ public class Klasse extends Typ {
 		super.setName(name);
 		super.setStereotyp(stereotyp);
 		super.setType("Klasse");
-		super.setChildName(parentName);
+		super.setParentName(parentName);
 		attribute = new ArrayList<Attribut>();
 		operationen = new ArrayList<Operation>();
 		beziehungen = new ArrayList<Beziehung>();
@@ -96,12 +96,5 @@ public class Klasse extends Typ {
 	// ----------------------------------------------------------------------------
 	
 	
-	public Klasse getVererbungVon() {
-		return vererbungVon;
-	}
-
-	public void setVererbungVon(Klasse vererbungVon) {
-		this.vererbungVon = vererbungVon;
-	}
 
 }
