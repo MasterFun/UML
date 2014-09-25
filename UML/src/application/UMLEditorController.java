@@ -117,6 +117,7 @@ public class UMLEditorController implements Initializable {
 		//Create new List for building tree
 		List<Object> treeList = new ArrayList<Object>(objectList);
 		List<Object> childrenList = new ArrayList<Object>();
+		List<Object> addList = new ArrayList<Object>();
 		List<Object> removalList = new ArrayList<Object>();
 		
 		//Iterate through tree till it contains no more elements
@@ -188,7 +189,7 @@ public class UMLEditorController implements Initializable {
 			}
 		}
 		treeList.removeAll(removalList);
-		
+
 	}
 	// ----------------------------------------------------------------------------	
 	
