@@ -117,6 +117,7 @@ public class UMLEditorController implements Initializable {
 		//Create new List for building tree
 		List<Object> treeList = new ArrayList<Object>(objectList);
 		List<Object> childrenList = new ArrayList<Object>();
+		List<Object> removalList = new ArrayList<Object>();
 		
 		//Iterate through tree till it contains no more elements
 		Iterator<Object> objectIterator = treeList.iterator();
@@ -143,9 +144,11 @@ public class UMLEditorController implements Initializable {
 			
 			if (parentName == "Root") {
 				TreeItem<String> parentItem = new TreeItem<String>(parentName);
-				//Can't add Item to TreeView in while loop
-				//klassenRoot.getChildren().add(parentItem);
-				treeList.remove(currentObject);
+				klassenRoot.getChildren().add(parentItem);
+				//Can't remove Object from List while iterating
+				//treeList.remove(currentObject);
+				removalList.add(currentObject);
+				objectIterator.remove();
 				Iterator<Object> childrenIterator = treeList.iterator();
 				while(childrenIterator.hasNext()) {
 					Object childObject = childrenIterator.next();
@@ -164,9 +167,11 @@ public class UMLEditorController implements Initializable {
 						childName = childNameField.get(childObject).toString();
 						if (childParentName == parentName) {
 							TreeItem<String> childItem = new TreeItem<String>(childName);
-							//Can't add Item to TreeView in while loop...
-							//parentItem.getChildren().add(childItem);
-							treeList.remove(childObject);
+							parentItem.getChildren().add(childItem);
+							//Can't remove object from List while itterating
+							//treeList.remove(childObject);
+							//childrenIterator.remove();
+							removalList.add(childObject);
 							parentName = childName;
 						}
 					} catch (NoSuchFieldException | SecurityException e) {
@@ -182,6 +187,8 @@ public class UMLEditorController implements Initializable {
 				}
 			}
 		}
+		treeList.removeAll(removalList);
+		
 	}
 	// ----------------------------------------------------------------------------	
 	
