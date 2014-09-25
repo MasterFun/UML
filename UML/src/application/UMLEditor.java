@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Frido Zurlinden / Christian Kiss
@@ -22,10 +24,11 @@ public class UMLEditor {
 	private String DATEINAME = "UMLEditor.tmp";
 
 	private static UMLEditor umleditor = null;
-//	private List<Typ> typen;
-	private List<Klasse> klassen;
-	private List<Interface> interfaces;
-	private List<Package> packages;
+	private ArrayList<Object> objectList;
+	
+//	private List<Klasse> klassen;
+//	private List<Interface> interfaces;
+//	private List<Package> packages;
 	private File datei;
 	
 	private boolean debug = true;
@@ -34,24 +37,18 @@ public class UMLEditor {
 	 * Konstruktor, in dem die Variablen instantiiert werden.
 	 */
 	private UMLEditor() {
-		klassen = new ArrayList<Klasse>();
-		interfaces = new ArrayList<Interface>();
-		packages = new ArrayList<Package>();
+		objectList = new ArrayList<>();
 		datei = new File(DATEINAME);
 		// einlesen();
 	}
 
-//	/**
-//	 * Holt alle Typen (Klassen, Interfaces, Packages)
-//	 * 
-//	 * @return Liste
-//	 */
-//	public List<Typ> holeTypen() {
-//		if (typen.size() == 0) {
-//			return null;
-//		}
-//		return typen;
-//	}
+	public List getObjectList() {
+		neueKlasse("Klasse1", "Klasse", "Root");
+		neueKlasse("Klasse2", "Klasse", "Klasse1");
+		neueKlasse("Klasse3", "Klasse", "Root");
+		return objectList;
+		
+	}
 
 	//-------------------------------------------------------------------------
 	// ck 21.09.2014 Klassen
@@ -63,11 +60,11 @@ public class UMLEditor {
 	 * @param
 	 * @return
 	 */
-	public Klasse neueKlasse(String name, String stereotyp, Klasse vererbungVon) {
+	public Klasse neueKlasse(String name, String stereotyp, String parentName) {
 
-		Klasse newKlasse = new Klasse(name, stereotyp, vererbungVon);
+		Klasse newKlasse = new Klasse(name, stereotyp, parentName);
 		// Befülle Liste aller Klassen damit holeKlasse ausgeführt werden kann
-		klassen.add(newKlasse);
+		objectList.add(newKlasse);
 
 		// speichern();
 
@@ -108,11 +105,11 @@ public class UMLEditor {
 	
 	//-------------------------------------------------------------------------
 	// ck 21.09.2014 Interface
-	public Interface neuesInterface(String name, String stereotyp){
+	public Interface neuesInterface(String name, String stereotyp, String parentName){
 		
-		Interface newInterface = new Interface(name, stereotyp);
+		Interface newInterface = new Interface(name, stereotyp, parentName);
 		// Befülle Liste Interfaces
-		interfaces.add(newInterface);
+		objectList.add(newInterface);
 		
 		if (debug == true) {
 			System.out.println("Neues Interface anlegen:\n"
@@ -145,11 +142,11 @@ public class UMLEditor {
 
 	//-------------------------------------------------------------------------
 	// ck 21.09.2014 Package
-	public Package neuesPackage(String name, String stereotyp){
+	public Package neuesPackage(String name, String stereotyp, String parentName){
 		
-		Package newPackage = new Package(name, stereotyp);
+		Package newPackage = new Package(name, stereotyp, parentName);
 		// Befülle Liste
-		packages.add(newPackage);
+		objectList.add(newPackage);
 		
 		if (debug == true) {
 			System.out.println("Neues Package anlegen:\n"

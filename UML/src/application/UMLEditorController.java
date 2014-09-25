@@ -1,6 +1,7 @@
 package application;
 
 
+import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -8,11 +9,13 @@ import java.nio.channels.SelectableChannel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -100,19 +103,50 @@ public class UMLEditorController implements Initializable {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Controller initialized");
 
-		
-	    
-		TreeItem<String> classTreeBuild = new TreeItem<String>(hostname, iconRoot);
-		
-
-		
-		klassenTree.setRoot(classTreeBuild);
-		
 		// Root-Eintrag erzeugen und immer ausgeklappt
 		TreeItem<String> klassenRoot = new TreeItem<String>(hostname, iconRoot);
 		klassenRoot.setExpanded(true);
 		klassenTree.setRoot(klassenRoot);
+	    
+		List<Object> objectList = umlEditor.getObjectList();
+		//Create Tree
+		//Create new List for building tree
+		List<Object> treeList = new ArrayList<Object>(objectList);
+		List<Object> childrenList = null;
+		
+		//Iterate through tree till it contains no more elements
+		Iterator<Object> objectIterator = treeList.iterator();
+		while (objectIterator.hasNext()) {
+			Object currentObject = objectIterator.next();
+			Class<?> currentClass = currentObject.getClass();
+			Class<?> superClass = currentClass.getSuperclass();
+			Field parentNameField;
+			String parentName = null;
+			try {
+				parentNameField = superClass.getDeclaredField("parentName");
+				parentNameField.setAccessible(true);
+				parentName = parentNameField.get(currentObject).toString();
+			} catch (NoSuchFieldException | SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (parentName == "Root") {
+				klassenRoot.getChildren().add(new TreeItem<String>(parentName));
+				treeList.remove(currentObject);
+				Iterator<Object> childrenIterator = treeList.iterator();
+				
+			}
+			
+			
+		}
 	
 	}
 	// ----------------------------------------------------------------------------	
@@ -501,7 +535,13 @@ public class UMLEditorController implements Initializable {
 	// ----------------------------------------------------------------------------
 	
 	
+	public void objectNew() {
+
+	}
 	
+	public void objectSave() {
+		
+	}
 	
 	
 						// Pane für neue Klasse
@@ -775,43 +815,7 @@ public class UMLEditorController implements Initializable {
 	public void fileSave(){
 		//TODO Methode zum speichern aufrufen mit bekanntem Dateiname
 	}
-	// -------------------------
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// ------------------------
 	
 	
 	

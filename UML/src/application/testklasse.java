@@ -40,26 +40,26 @@ public class testklasse {
 //		
 //		
 //		// Testklassen anlegen
-//		ArrayList<Klasse> klassen = new ArrayList<Klasse>();
-//		Klasse kla = new Klasse("Klasse1", "Stereo", null);
-//		klassen.add(kla);
-//		Klasse kla2 = new Klasse("Klasse2", "Stereo", null);
-//		klassen.add(kla2);
-//		
-//		System.out.println(kla.getName());
+		ArrayList<Klasse> klassen = new ArrayList<Klasse>();
+		Klasse kla = new Klasse("Klasse1", "Stereo", "Root");
+		klassen.add(kla);
+		Klasse kla2 = new Klasse("Klasse2", "Stereo", "Klasse1");
+		klassen.add(kla2);
+		
+		System.out.println(kla.getName());
 //
 //		// Attribute anlegen
-//		for (int faktor = 1; faktor <= 3; faktor++) {
-//			kla.addAttribut(new Attribut("Attribute " + faktor, "sichtbar",
-//					"typ", "initialwert", "stereotyp"));
-//		}
+		for (int faktor = 1; faktor <= 3; faktor++) {
+			kla.addAttribut(new Attribut("Attribute " + faktor, "sichtbar",
+					"typ", "initialwert", "stereotyp"));
+		}
 //		// Print Out Attribute
-//		List<Attribut> attributeKlasse = kla.getAttribute();
-//		System.out.println("Attribute:");
-//		for (Attribut a : attributeKlasse) {
-//			System.out.println(a.getName());
-//		}
-//
+		List<Attribut> attributeKlasse = kla.getAttribute();
+		System.out.println("Attribute:");
+		for (Attribut a : attributeKlasse) {
+			System.out.println(a.getName());
+		}
+
 //		// Operationen anlegen
 //		for (int faktor = 1; faktor <= 3; faktor++) {
 //			kla.addOperation(new Operation("Operation " + faktor, true,

@@ -20,12 +20,12 @@ public class Klasse extends Typ {
 	// TODO ck 29.09.2014 - sollte OK sein
 	// Neue Klasse wird angelegt
 	
-	public Klasse(String name, String stereotyp, Klasse vererbungVon) {
+	public Klasse(String name, String stereotyp, String parentName) {
 
 		super.setName(name);
 		super.setStereotyp(stereotyp);
 		super.setType("Klasse");
-		this.vererbungVon = vererbungVon;
+		super.setChildName(parentName);
 		attribute = new ArrayList<Attribut>();
 		operationen = new ArrayList<Operation>();
 		beziehungen = new ArrayList<Beziehung>();

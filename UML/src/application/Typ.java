@@ -10,15 +10,14 @@ public class Typ implements Serializable {
 	private String name;
 	private String stereotyp;
 	private String type;
-	private TreeItem<?> parent;
-	
-	public TreeItem<?> getParent() {
-		return parent;
-	}
-	public void setParent(TreeItem<?> parent) {
-		this.parent = parent;
-	}
+	private String parentName;
 
+	public String getChildName() {
+		return parentName;
+	}
+	public void setChildName(String childName) {
+		this.parentName = childName;
+	}
 	public String getName() {
 		return name;
 	}

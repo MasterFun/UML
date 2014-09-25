@@ -4,21 +4,12 @@ import javafx.scene.control.TreeItem;
 
 public class Package extends Typ {
 
-	private TreeItem<?> parent;
-
-	public TreeItem<?> getParent() {
-		return parent;
-	}
-
-	public void setParent(TreeItem<?> parent) {
-		this.parent = parent;
-	}
-
-	public Package(String name, String stereotyp) {
+	public Package(String name, String stereotyp, String childName) {
 
 		super.setName(name);
 		super.setStereotyp(stereotyp);
 		super.setType("Package");
+		super.setChildName(childName);
 	}
 
 	
