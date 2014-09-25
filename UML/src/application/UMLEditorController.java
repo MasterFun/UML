@@ -9,9 +9,11 @@ import java.nio.channels.SelectableChannel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
@@ -114,7 +116,9 @@ public class UMLEditorController implements Initializable {
 		//Create Tree
 		//Create new List for building tree
 		List<Object> treeList = new ArrayList<Object>(objectList);
-		List<Object> childrenList = null;
+		List<Object> childrenList = new ArrayList<Object>();
+		List<Object> addList = new ArrayList<Object>();
+		List<Object> removalList = new ArrayList<Object>();
 		
 		//Iterate through tree till it contains no more elements
 		Iterator<Object> objectIterator = treeList.iterator();
@@ -124,30 +128,68 @@ public class UMLEditorController implements Initializable {
 			Class<?> superClass = currentClass.getSuperclass();
 			Field parentNameField;
 			String parentName = null;
-			try {
-				parentNameField = superClass.getDeclaredField("parentName");
-				parentNameField.setAccessible(true);
-				parentName = parentNameField.get(currentObject).toString();
-			} catch (NoSuchFieldException | SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					parentNameField = superClass.getDeclaredField("parentName");
+					parentNameField.setAccessible(true);
+					parentName = parentNameField.get(currentObject).toString();
+				} catch (NoSuchFieldException | SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 			if (parentName == "Root") {
-				klassenRoot.getChildren().add(new TreeItem<String>(parentName));
-				treeList.remove(currentObject);
+				TreeItem<String> parentItem = new TreeItem<String>(parentName);
+				klassenRoot.getChildren().add(parentItem);
+				//Can't remove Object from List while iterating
+				//treeList.remove(currentObject);
+				removalList.add(currentObject);
+				objectIterator.remove();
 				Iterator<Object> childrenIterator = treeList.iterator();
-				
+				while(childrenIterator.hasNext()) {
+					Object childObject = childrenIterator.next();
+					Class<?> childClass = childObject.getClass();
+					Class<?> childSuperClass = childClass.getSuperclass();
+					Field childParentNameField;
+					Field childNameField;
+					String childParentName = null;
+					String childName = null;
+					try {
+						childParentNameField = childSuperClass.getDeclaredField("parentName");
+						childNameField = childSuperClass.getDeclaredField("name");
+						childParentNameField.setAccessible(true);
+						childNameField.setAccessible(true);
+						childParentName = childParentNameField.get(childObject).toString();
+						childName = childNameField.get(childObject).toString();
+						if (childParentName == parentName) {
+							TreeItem<String> childItem = new TreeItem<String>(childName);
+							parentItem.getChildren().add(childItem);
+							//Can't remove object from List while itterating
+							//treeList.remove(childObject);
+							//childrenIterator.remove();
+							removalList.add(childObject);
+							parentName = childName;
+						}
+					} catch (NoSuchFieldException | SecurityException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
-			
-			
 		}
-	
+		treeList.removeAll(removalList);
+
 	}
 	// ----------------------------------------------------------------------------	
 	
